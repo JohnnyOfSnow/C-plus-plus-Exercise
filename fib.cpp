@@ -15,7 +15,7 @@ int _tmain(int argc, _TCHAR* argv[]) // For 微軟的Visual Studio  c++ main's s
 	cout << "請輸入費伯納西，你要求幾項:";
 	cin >> fib;
 
-	cout << "開始計算油費伯納西數列所得的黃金比例逼近\n";
+	cout << "開始計算由費伯納西數列所得的黃金比例逼近\n";
 
 	for (iterationCount = 1; iterationCount <= (fib - 1); iterationCount++){
 		double ratio = Fib(iterationCount) / Fib(iterationCount + 1);
@@ -30,8 +30,8 @@ int _tmain(int argc, _TCHAR* argv[]) // For 微軟的Visual Studio  c++ main's s
 double Fib(int number){
 	if (number == 1 || number == 2){ // base case
 		return 1.0;
-	}else{
+	}
+	else{
 		return Fib(number - 1) + Fib(number - 2); // recursively call
 	}
 }
-
