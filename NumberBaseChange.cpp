@@ -40,6 +40,8 @@ void printBinaryNumber(int integer, double point){
 	}
 
 	// Find the higest exp which stores in count
+	int highExp = count;
+	
 	count = count - 1;
 	div = div / 2;
 
@@ -54,7 +56,30 @@ void printBinaryNumber(int integer, double point){
 		count = count - 1;
 		div = div / 2;
 	}
-	//cout << integer;
+	cout << ".";
+
+	if (point == 0){
+		//cout << "沒有小數點";
+	}
+	else{
+		double divForPoint = 0.5;
+		int countForPoint = 1;
+
+		while (countForPoint != 23 && point >= 0){ // 單精確要填23位
+			if (point >= divForPoint){
+				cout << "1";
+				point = point - divForPoint;
+			}
+			else{
+				cout << "0";
+			}
+			countForPoint = countForPoint + 1;
+			divForPoint = divForPoint * 0.5;
+		}
+	}
+
+
+	
 }
 
 
