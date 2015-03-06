@@ -41,45 +41,71 @@ void printBinaryNumber(int integer, double point){
 
 	// Find the higest exp which stores in count
 	int highExp = count;
-	
+	int *array;
+	array = new int[highExp + 1];
+
 	count = count - 1;
 	div = div / 2;
 
 	while (count >= 0){
 		if (integer / div != 0){
 			cout << "1";
+			array[count] = 1;
 		}
 		else{
 			cout << "0";
+			array[count] = 0;
 		}
 		integer = integer % div;
 		count = count - 1;
 		div = div / 2;
 	}
-	cout << ".";
 
+	int pointArray[23];
+	
 	if (point == 0){
 		//cout << "沒有小數點";
 	}
 	else{
+		cout << ".";
 		double divForPoint = 0.5;
-		int countForPoint = 1;
+		int countForPoint = 0;
 
-		while (countForPoint != 23 && point >= 0){ // 單精確要填23位
+		while (countForPoint != 22 && point >= 0){ // 單精確要填23位
 			if (point >= divForPoint){
 				cout << "1";
+				pointArray[countForPoint] = 1;
 				point = point - divForPoint;
 			}
 			else{
+				pointArray[countForPoint] = 0;
 				cout << "0";
 			}
 			countForPoint = countForPoint + 1;
 			divForPoint = divForPoint * 0.5;
 		}
+
+		while (countForPoint != 22){
+			pointArray[countForPoint] = 0;
+		}
 	}
+	cout << "" << endl;
 
+	/*
+	int displayCount = 0;
+	while (displayCount <= highExp){
+		cout << array[displayCount];
+		displayCount = displayCount + 1;
+	}
+	cout << ".";
+	displayCount = 0;
+	while (displayCount <= 22){
+		cout << pointArray[displayCount];
+		displayCount = displayCount + 1;
+	}
+	*/
 
-	
+	delete[] array;
 }
 
 
