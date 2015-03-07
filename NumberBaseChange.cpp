@@ -14,16 +14,24 @@ int _tmain(int argc, _TCHAR* argv[]) // For 微軟的Visual Studio  c++ main's s
 	double number;
 	int entirePartition;
 	double pointPartition;
-
-
-	cout << "請輸入一個數: ";
+    
+    
+	cout << "請輸入一個正數: ";
 	cin >> number;
+	
+	while(number <= 0.0){
+         cout << "你輸入的不是正數，請重新輸入一個正數: "; 
+         cin >> number;    
+    }
 
 	entirePartition = number / 1; // 取整數
 	pointPartition = number - entirePartition;
-
+	
+	
+    cout << "------------------" << endl;
 	cout << "整數部分為:" << entirePartition << endl;
 	cout << "小數部分為:" << pointPartition << endl;
+	cout << "------------------" << endl;
 	
 	print(entirePartition, pointPartition);
 
@@ -66,6 +74,11 @@ void print(int integer, double point){
 	
 	if (point == 0){
 		//cout << "沒有小數點";
+		int fillIndex = 0;
+		while(fillIndex != 22){
+            pointArray[fillIndex] = 0; 
+            fillIndex = fillIndex + 1;           
+        }
 	}
 	else{
 		cout << ".";
