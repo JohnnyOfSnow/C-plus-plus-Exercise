@@ -22,13 +22,13 @@ int _tmain(int argc, _TCHAR* argv[]) // For 微軟的Visual Studio  c++ main's s
 	while(number <= 0.0){
          cout << "你輸入的不是正數，請重新輸入一個正數: "; 
          cin >> number;    
-    }
+    	}
 
 	entirePartition = number / 1; // 取整數
 	pointPartition = number - entirePartition;
 	
 	
-    cout << "------------------" << endl;
+    	cout << "------------------" << endl;
 	cout << "整數部分為:" << entirePartition << endl;
 	cout << "小數部分為:" << pointPartition << endl;
 	cout << "------------------" << endl;
@@ -56,7 +56,7 @@ void print(int integer, double point){
 
 	count = count - 1;
 	div = div / 2;
-    cout << "二進位表示法為: ";
+    	cout << "二進位表示法為: ";
     
 	while (count >= 0){
 		if (integer1 / div != 0){
@@ -76,9 +76,9 @@ void print(int integer, double point){
 		//cout << "沒有小數點";
 		int fillIndex = 0;
 		while(fillIndex != 22){
-            pointArray[fillIndex] = 0; 
-            fillIndex = fillIndex + 1;           
-        }
+            		pointArray[fillIndex] = 0; 
+            		fillIndex = fillIndex + 1;           
+        	}
 	}
 	else{
 		cout << ".";
@@ -109,10 +109,10 @@ void print(int integer, double point){
 	cout << "單精位浮點數表示: ";
 	int floatArray[32];
 	int floatArrayIndex = 1;
-    floatArray[0] = 0;
+	 floatArray[0] = 0;
     
     
-    count = 1;
+    	count = 1;
 	div = 2;
 	int number = 126 + highExp;
 	
@@ -156,25 +156,26 @@ void print(int integer, double point){
     
 	count = count - 1;
 	div = div / 2;
+	
 	// Start to print the fraction
-    cout << " " ; 
-    int first = 1;
+    	cout << " " ; 
+    	int first = 1;
     
 	while (count >= 0){
 		if (integer1 / div != 0){
-            if(first == 1){
-                  first = 0;   
-            }else{ 
-                floatArray[floatArrayIndex] = 1; 
-            }	
+        		 if(first == 1){
+                  		first = 0;   
+            		}else{ 
+                		floatArray[floatArrayIndex] = 1; 
+            		}	
 		}
 		else{
 			if(first == 1){
-                  first = 0; 
-            }else{              
-                floatArray[floatArrayIndex] = 0;
+                  		first = 0; 
+            		}else{              
+                		floatArray[floatArrayIndex] = 0;
                   
-            }	
+            		}	
 		}
 		floatArrayIndex = floatArrayIndex + 1;
 		integer1 = integer1 % div;
