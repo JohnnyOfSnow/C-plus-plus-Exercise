@@ -1,14 +1,14 @@
 // ConsoleApplication1.cpp : 定義主控台應用程式的進入點。
 //
 
-
+#include "stdafx.h"
 #include <iostream>
 
 using namespace std; // using direction, we don't need to write the std::cout
 void print(int integer, double point);
 
 
-int main() // For 微軟的Visual Studio  c++ main's should be  _tmain
+int _tmain(int argc, _TCHAR* argv[]) // For 微軟的Visual Studio  c++ main's should be  _tmain
 {
 
 	double number;
@@ -188,8 +188,43 @@ void print(int integer, double point){
         printContent = printContent + 1;  
     }  
     cout << " " << endl;
-     
-      
+    
+    // print the Hex
+    printContent = 0;
+    int currentValue = 0;
+    cout << "十六進位表示: ";
+    while(printContent <= 31){
+          currentValue = currentValue + floatArray[printContent] * 8;
+          printContent = printContent + 1;
+          currentValue = currentValue + floatArray[printContent] * 4;
+          printContent = printContent + 1;
+          currentValue = currentValue + floatArray[printContent] * 2;
+          printContent = printContent + 1;
+          currentValue = currentValue + floatArray[printContent] * 1;
+          printContent = printContent + 1;
+          if(currentValue <= 9){
+                 cout << currentValue;         
+          }else{
+                if(currentValue == 10){
+                      cout << "A";          
+                }else if(currentValue == 11){
+                      cout << "B";
+                }else if(currentValue == 12){
+                      cout << "C";
+                }else if(currentValue == 13){
+                      cout << "D";
+                }else if(currentValue == 14){
+                      cout << "E";
+                }else if(currentValue == 15){
+                      cout << "F";
+                }else{
+                      cout << "出錯";
+                }
+          }
+          cout << " ";
+          currentValue = 0; 
+    }  
+    cout << " " << endl;    
 }
 
 
