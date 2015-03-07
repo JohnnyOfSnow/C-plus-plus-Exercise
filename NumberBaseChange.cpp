@@ -1,13 +1,14 @@
 // ConsoleApplication1.cpp : 定義主控台應用程式的進入點。
 //
 
-#include "stdafx.h"
+
 #include <iostream>
 
 using namespace std; // using direction, we don't need to write the std::cout
-void printBinaryNumber(int integer, double point);
+void print(int integer, double point);
 
-int _tmain(int argc, _TCHAR* argv[]) // For 微軟的Visual Studio  c++ main's should be  _tmain
+
+int main() // For 微軟的Visual Studio  c++ main's should be  _tmain
 {
 
 	double number;
@@ -24,15 +25,17 @@ int _tmain(int argc, _TCHAR* argv[]) // For 微軟的Visual Studio  c++ main's s
 	cout << "整數部分為:" << entirePartition << endl;
 	cout << "小數部分為:" << pointPartition << endl;
 	
-	printBinaryNumber(entirePartition, pointPartition);
+	print(entirePartition, pointPartition);
 
 	system("pause");
 	return 0;
 }
 
-void printBinaryNumber(int integer, double point){
+void print(int integer, double point){
 	int count = 1;
 	int div = 2;
+	
+	int integer1 = integer;
 
 	while (integer >= div){
 		div = div * 2;
@@ -41,22 +44,20 @@ void printBinaryNumber(int integer, double point){
 
 	// Find the higest exp which stores in count
 	int highExp = count;
-	int *array;
-	array = new int[highExp + 1];
+
 
 	count = count - 1;
 	div = div / 2;
-
+    cout << "二進位表示法為: ";
+    
 	while (count >= 0){
-		if (integer / div != 0){
+		if (integer1 / div != 0){
 			cout << "1";
-			array[count] = 1;
 		}
 		else{
 			cout << "0";
-			array[count] = 0;
 		}
-		integer = integer % div;
+		integer1 = integer1 % div;
 		count = count - 1;
 		div = div / 2;
 	}
@@ -90,23 +91,108 @@ void printBinaryNumber(int integer, double point){
 		}
 	}
 	cout << "" << endl;
-
-	/*
-	int displayCount = 0;
-	while (displayCount <= highExp){
-		cout << array[displayCount];
-		displayCount = displayCount + 1;
+	
+	/* Start to print float repersentation*/
+	cout << "單精位浮點數表示: ";
+	int floatArray[32];
+	int floatArrayIndex = 1;
+    floatArray[0] = 0;
+    
+    
+    count = 1;
+	div = 2;
+	int number = 126 + highExp;
+	
+	while (number >= div){
+		div = div * 2;
+		count = count + 1;
 	}
-	cout << ".";
-	displayCount = 0;
-	while (displayCount <= 22){
-		cout << pointArray[displayCount];
-		displayCount = displayCount + 1;
-	}
-	*/
 
-	delete[] array;
+	// Find the higest exp which stores in count
+	highExp = count;
+
+	count = count - 1;
+	div = div / 2;
+    
+	while (count >= 0){
+		if (number / div != 0){		
+			floatArray[floatArrayIndex] = 1;
+		}
+		else{			
+			floatArray[floatArrayIndex] = 0;
+		}
+		floatArrayIndex = floatArrayIndex + 1;
+		number = number % div;
+		count = count - 1;
+		div = div / 2;
+	}
+	//
+	count = 1;
+	div = 2;
+	floatArrayIndex = floatArrayIndex - 1;
+	integer1 = integer;
+
+	while (integer >= div){
+		div = div * 2;
+		count = count + 1;
+	}
+
+	// Find the higest exp which stores in count
+	highExp = count;
+
+    
+	count = count - 1;
+	div = div / 2;
+	// Start to print the fraction
+    cout << " " ; 
+    int first = 1;
+    
+	while (count >= 0){
+		if (integer1 / div != 0){
+            if(first == 1){
+                  first = 0;   
+            }else{ 
+                floatArray[floatArrayIndex] = 1; 
+            }	
+		}
+		else{
+			if(first == 1){
+                  first = 0; 
+            }else{              
+                floatArray[floatArrayIndex] = 0;
+                  
+            }	
+		}
+		floatArrayIndex = floatArrayIndex + 1;
+		integer1 = integer1 % div;
+		count = count - 1;
+		div = div / 2;
+	}
+	
+	int pointInputIndex = 0;
+	
+	while(floatArrayIndex != 31){
+          floatArray[floatArrayIndex]  = pointArray[pointInputIndex];
+          floatArrayIndex = floatArrayIndex + 1; 
+          pointInputIndex = pointInputIndex + 1;         
+    }
+	
+    // print the float 
+    int printContent = 0;
+    while(printContent <= 31){
+        if(printContent == 1 || printContent == 9 || printContent == 13 || printContent == 17 || 
+        printContent == 21 || printContent == 25 || printContent == 29){
+               cout << " ";         
+        }
+        cout << floatArray[printContent];               
+        printContent = printContent + 1;  
+    }  
+    cout << " " << endl;
+     
+      
 }
+
+
 
 
 
