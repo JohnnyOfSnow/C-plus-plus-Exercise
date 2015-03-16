@@ -4,12 +4,16 @@
 #include "stdafx.h"
 #include <iostream>
 #include <time.h>
-#include <math.h> 
+#include <cmath> 
 #include <ctime>
 #define SIZE 128 // define a constant
 
 using namespace std; // using direction, we don't need to write the std::cout
 void searchForMinAndMax(int *array);
+void searchForMinAndMaxByRecursive(int *array, int low, int high);
+
+int min = 1000;
+int max = 0;
 
 int _tmain(int argc, _TCHAR* argv[])
 {
@@ -59,6 +63,12 @@ int _tmain(int argc, _TCHAR* argv[])
 	cout << (((double)t) / CLOCKS_PER_SEC) / 100000;
 	cout << endl;
 
+	searchForMinAndMaxByRecursive(number, 0, (SIZE - 1));
+	cout << endl << "最小值為: ";
+	cout << min << endl;
+	cout << endl << "最大值為: ";
+	cout << max << endl;
+
 }
 
 
@@ -77,6 +87,25 @@ void searchForMinAndMax(int *array){
 		}
 	}
 }
+
+void searchForMinAndMaxByRecursive(int *array, int low, int high){
+	if (low == high){
+		if (array[low] < min){
+			min = array[low];
+		}
+
+		if (array[low] > max){
+			max = array[low];
+		}
+	}
+	else{
+		int m = (int)(floor((low + high) / 2));
+		searchForMinAndMaxByRecursive(array, low, m);
+		searchForMinAndMaxByRecursive(array, m, high);
+	}
+}
+
+
 
 
 
