@@ -45,7 +45,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		}
 		else{
 			cout << number[counter] << ", ";
-		}	
+		}
 	}
 	cout << endl;
 	cout << "---------------------------------------------";
@@ -54,20 +54,24 @@ int _tmain(int argc, _TCHAR* argv[])
 	// Start to search the min and max number by traditional search
 	clock_t t;
 	t = clock(); // Start
-	for (counter = 0; counter < 100000; counter++){
+	for (counter = 0; counter < 1000000; counter++){
 		searchForMinAndMax(number);
 	}
 	t = clock() - t; // Stop
 
 	cout << endl << "使用傳統方法尋找最小最大值所花的時間為: ";
-	cout << (((double)t) / CLOCKS_PER_SEC) / 100000;
+	cout << (((double)t) / CLOCKS_PER_SEC) / 1000000;
 	cout << endl;
 
-	searchForMinAndMaxByRecursive(number, 0, (SIZE - 1));
-	cout << endl << "最小值為: ";
-	cout << min << endl;
-	cout << endl << "最大值為: ";
-	cout << max << endl;
+	t = clock(); // Star
+	for (counter = 0; counter < 1000000; counter++){
+		searchForMinAndMaxByRecursive(number, 0, (SIZE - 1));
+	}
+	t = clock() - t; // Stop
+	cout << endl << "使用遞迴方法尋找最小最大值所花的時間為: ";
+	cout << (((double)t) / CLOCKS_PER_SEC) / 1000000;
+	cout << endl;
+	system("pause");
 
 }
 
@@ -97,14 +101,15 @@ void searchForMinAndMaxByRecursive(int *array, int low, int high){
 		if (array[low] > max){
 			max = array[low];
 		}
+		return;
 	}
 	else{
 		int m = (int)(floor((low + high) / 2));
 		searchForMinAndMaxByRecursive(array, low, m);
-		searchForMinAndMaxByRecursive(array, m, high);
+		searchForMinAndMaxByRecursive(array, (m + 1), high);
+		return;
 	}
 }
-
 
 
 
