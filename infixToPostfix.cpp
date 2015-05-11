@@ -110,8 +110,10 @@ void inToPostfix(char* infix) {
                     case '-': 
                     case '*': 
                     case '/': 
-                         flag = 0;
-                         cout << " ";
+                         if(flag == 1){
+                            cout << " ";     
+                         }
+                         flag = 0; 
                          compare = myStack.popGet();
                          while(priority(compare) >= priority(infix[i])) {                                               
                               cout << compare << " ";
@@ -121,7 +123,10 @@ void inToPostfix(char* infix) {
                          myStack.push(infix[i]);   
                     break;   
                     case ')':
-                         flag = 0;
+                         if(flag == 1){
+                            cout << " ";     
+                         }
+                         flag = 0; 
                          cout << " "; 
                          compare = myStack.popGet();
                          while(compare != '(') { 
