@@ -98,6 +98,7 @@ void inToPostfix(char* infix) {
      printf("postfix: "); 
      MyStack myStack(STACKSIZE);
      int i, j;
+     int flag = 0;
      char compare;
      for(i = 0, j = 0; infix[i] != '\0'; i++){
            switch(infix[i]){
@@ -109,6 +110,8 @@ void inToPostfix(char* infix) {
                     case '-': 
                     case '*': 
                     case '/': 
+                         flag = 0;
+                         cout << " ";
                          compare = myStack.popGet();
                          while(priority(compare) >= priority(infix[i])) {                                               
                               cout << compare << " ";
@@ -117,7 +120,9 @@ void inToPostfix(char* infix) {
                          myStack.push(compare);
                          myStack.push(infix[i]);   
                     break;   
-                    case ')': 
+                    case ')':
+                         flag = 0;
+                         cout << " "; 
                          compare = myStack.popGet();
                          while(compare != '(') { 
                               cout << compare << " ";
@@ -125,10 +130,16 @@ void inToPostfix(char* infix) {
                          } 
                     break; 
                     
-                    default:   
-                         cout << infix[i] << " ";
+                    default: 
+                         if(flag == 0){
+                            cout << infix[i];
+                            flag = 1;    
+                         }else{
+                            cout << infix[i];   
+                         }      
            }
      }
+     cout << " ";
      while(myStack.isEmpty() == false) { 
              compare = myStack.popGet();
              cout << compare << " ";  
